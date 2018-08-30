@@ -63,7 +63,7 @@ namespace PCBuilder.Tests.Controllers.BuildsControllerTests
         [TestMethod]
         public void RateController_WithInvalidUserId_ShouldReturnNotFoundResult()
         {
-            var result = controller.Rate(5, "Invalid Id", "Invalid Id2");
+            var result = controller.Rate(5, "Invalid Id", "Invalid Id2", "RandomBuild");
 
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
@@ -71,7 +71,7 @@ namespace PCBuilder.Tests.Controllers.BuildsControllerTests
         [TestMethod]
         public void RateController_WithInvalidRate_ShouldReturnRedirectAndProperMessage()
         {
-            var result = controller.Rate(11, "Invalid Id", "Builder");
+            var result = controller.Rate(11, "Invalid Id", "Builder", "RandomBuild");
 
             var message = controller.TempData["Error"];
 
@@ -87,7 +87,7 @@ namespace PCBuilder.Tests.Controllers.BuildsControllerTests
                 new Claim(ClaimTypes.Name, "User")
             }));
 
-            var result = controller.Rate(10, "Random Id", "User");
+            var result = controller.Rate(10, "Random Id", "User", "RandomBuild");
             var message = controller.TempData["Error"];
 
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
