@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.MemoryViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All memory sticks</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Amount))(GB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Socket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Frequency))(MHz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModulesType)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Price))($)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Socket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Frequency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModulesType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <div style=@(this.User.IsInRole(WebConstants.AdminRole) ? "width:200px;" : "")>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Memory" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-warning">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Memory" asp-action="Delete" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,94 @@
+﻿@page "{id}"
+@model PCBuilder.Web.Pages.GraphicsCards.DetailsModel
+@using PCBuilder.Common
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Graphics Card</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.Manufacturer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.Manufacturer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.ModelName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.ModelName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.Architecture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.Architecture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.Socket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.Socket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.Pipelines)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.Pipelines)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.CoreSpeed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.CoreSpeed) MHz
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.MemorySpeed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.MemorySpeed) MHz
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.MemoryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.MemoryType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.MemoryAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.MemoryAmount) GB
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.MaxPower)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.MaxPower) W
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.DirectX)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.DirectX)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.GraphicsCard.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.GraphicsCard.Price)$
+        </dd>
+    </dl>
+</div>
+<div style="margin-left:110px">
+    @if (this.User.IsInRole(WebConstants.AdminRole))
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.GraphicsCard.Id" asp-area="Admin" class="btn btn-danger">Edit</a>
+    }
+    <a asp-page="./Index" asp-area="" class="btn btn-default">Back to List</a>
+</div>

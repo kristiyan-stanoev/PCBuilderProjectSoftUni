@@ -1,0 +1,153 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> userManager
+@model PCBuilder.Common.Models.ViewModels.PCViewModel
+@{
+    ViewData["Title"] = "Rate";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @(TempData["Error"])
+    </div>
+}
+
+<h2>Rate</h2>
+
+<div class="row">
+    <div class="col-sm-3">
+        <img src="@Model.CaseUrl" alt="Case image" class="img-responsive" />
+    </div>
+    <div class="col-sm-6">
+        <dl class="dl-horizontal">
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.BuildName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BuildName)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.Case)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Case)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.Processor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Processor)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.GraphicsCard)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GraphicsCard)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.Motherboard)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Motherboard)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.Memory)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Memory)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.NumberOfMemorySticks)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumberOfMemorySticks)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.PowerSupply)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PowerSupply)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.HardDiskDrive)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HardDiskDrive)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.SolidStateDrive)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SolidStateDrive)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)$
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.SystemRating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SystemRating) / @Html.DisplayFor(model => model.MaxSystemRating)
+            </dd>
+            <dt style="width:180px; margin-right: 20px;">
+                @Html.DisplayNameFor(model => model.UserRating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserRating) / 10
+            </dd>
+        </dl>
+    </div>
+    <div class="col-sm-3">
+        @{
+                var userId = userManager.GetUserId(this.User);
+
+                var ratingAndUserId = new Dictionary<string, string>
+                    {
+                        {"Rating", ""},
+                        {"UserId", userId.ToString() },
+                        {"Builder", Model.Username },
+                        {"BuildName", Model.BuildName }
+
+                    };
+
+
+                @if (Model.UsersRatedIds.Contains(userId))
+                {
+                <p>You have already rated this build.</p>
+                }
+            else
+            {
+                <form asp-action="Rate" asp-controller="Builds" method="post">
+                    <label class="control-label">How will you rate this build?</label>
+                    <input name="Rating" class="form-control" placeholder="1-10" />
+                    <span asp-validation-for="UserRating" class="text-danger" ></span>
+                    <input type="submit" asp-all-route-data="ratingAndUserId" value="Rate" class="btn btn-warning" />
+                </form>
+            }
+        }
+    </div>
+</div>
+<div class="alert alert-warning" role="alert">
+    @Html.Raw(Model.SystemSummary)
+</div>
+<div class="row">
+    <div class="col-sm-offset-4">
+        @*@if (this.User.IsInRole(WebConstants.AdminRole))
+            {
+                <a asp-area="" asp-controller="Motherboards" asp-action="Edit" asp-route-id="@(Model.Id)" class="btn btn-warning">Edit</a>
+            }*@
+        @if (this.User.Identity.Name == Model.Username)
+        {
+            <a asp-action="Index" asp-controller="Builds" asp-area="" class="btn btn-primary">My builds</a>
+        }
+        <a asp-action="All" asp-controller="Builds" asp-area="" class="btn btn-default">All builds</a>
+    </div>
+</div>
+<hr />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

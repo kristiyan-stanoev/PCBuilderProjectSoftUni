@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.PowerSupplyViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All power supplies</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Connector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfCoolingVents)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Power))(W)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pfc)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Effectiveness))(%)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Price))($)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Connector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCoolingVents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Power)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pfc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Effectiveness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <div style=@(this.User.IsInRole(WebConstants.AdminRole) ? "width:200px;" : "")>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="PowerSupplies" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-warning">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="PowerSupplies" asp-action="Delete" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

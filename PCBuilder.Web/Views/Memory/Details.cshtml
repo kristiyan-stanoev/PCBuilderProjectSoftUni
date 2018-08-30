@@ -1,0 +1,69 @@
+﻿@model PCBuilder.Common.Models.ViewModels.MemoryViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Memory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModelName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Amount) GB
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Socket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Socket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Frequency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Frequency) MHz
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModulesType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModulesType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)$
+        </dd>
+    </dl>
+</div>
+<div style="margin-left:110px">
+    @if (this.User.IsInRole(WebConstants.AdminRole))
+    {
+        <a asp-area="Admin" asp-controller="Memory" asp-action="Edit" asp-route-id="@(Model.Id)" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" asp-controller="Memory" asp-area="" class="btn btn-default">Back to List</a>
+</div>

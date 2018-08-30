@@ -1,0 +1,21 @@
+﻿@page
+@model PCBuilder.Web.Pages.Parts.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All parts</h2>
+
+<div class="list-group">
+    <a asp-area="" asp-controller="Cases" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Cases</a>
+    <a asp-area="" asp-page="/GraphicsCards/Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Graphics cards</a>
+    <a asp-area="" asp-controller="Processors" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Processors</a>
+    <a asp-area="" asp-controller="Motherboards" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Motherboards</a>
+    <a asp-area="" asp-controller="Memory" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Memory</a>
+    <a asp-area="" asp-controller="PowerSupplies" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Power supplies</a>
+    <a asp-area="" asp-controller="HardDiskDrives" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Hard disk drives</a>
+    <a asp-area="" asp-controller="SolidStateDrives" asp-action="Index" class="list-group-item list-group-item-action list-group-item-heading list-group-item-info" style="color:black">Solid state drives</a>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home" asp-area="" class="btn btn-default">Back to Home</a>
+</div>

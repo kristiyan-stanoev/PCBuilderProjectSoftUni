@@ -1,0 +1,52 @@
+﻿@model PCBuilder.Common.Models.ViewModels.CaseViewModel
+@{
+    ViewData["Title"] = "CaseViewModel";
+}
+
+    <tr>
+        <td>
+            <img src="@Model.ImageUrl" alt="Case image" class="img-responsive" style="width:250px"/>
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.Manufacturer)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.FormFactor)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.NumberOfVents)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.CaseType)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.NumberOfPorts)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(model => Model.Price)
+        </td>
+        <td>
+            <div style=@(this.User.IsInRole(WebConstants.AdminRole) ? "width:200px;" : "")>
+                @if (this.User.IsInRole(WebConstants.AdminRole))
+                {
+                    <a asp-controller="Cases" asp-action="Edit" asp-route-id="@Model.Id" asp-area="Admin" class="btn btn-warning responsive">Edit</a>
+                }
+                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Details</a>
+                @if (this.User.IsInRole(WebConstants.AdminRole))
+                {
+                    <a asp-controller="Cases" asp-action="Delete" asp-route-id="@Model.Id" asp-area="Admin" class="btn btn-danger">Delete</a>
+                }
+            </div>
+        </td>
+    </tr>
+
+

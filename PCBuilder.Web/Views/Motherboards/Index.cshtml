@@ -1,0 +1,117 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.MotherboardViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All motherboards</h2>
+<table class="table table-striped" style="margin-left:-60px">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessorSocketNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GraphicsCardSocketNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chipset)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemoryType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemorySocketNumber)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.MaxMemory))(GB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfMemorySlots)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PowerConnector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HDDInterface)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SSDInterface)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormFactor)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Price))($)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcessorSocketNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GraphicsCardSocketNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chipset)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemoryType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemorySocketNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxMemory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfMemorySlots)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PowerConnector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HDDInterface)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSDInterface)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormFactor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <div style=@(this.User.IsInRole(WebConstants.AdminRole) ? "width:200px;" : "" )>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Motherboards" asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-warning">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Motherboards" asp-action="Delete" asp-route-id="@item.Id" asp-area="Admin" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

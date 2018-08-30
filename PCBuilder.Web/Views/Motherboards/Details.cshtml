@@ -1,0 +1,105 @@
+﻿@model PCBuilder.Common.Models.ViewModels.MotherboardViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Motherboard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModelName)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.ProcessorSocketNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProcessorSocketNumber)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.GraphicsCardSocketNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GraphicsCardSocketNumber)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.Chipset)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Chipset)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.MemoryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemoryType)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.MemorySocketNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemorySocketNumber)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.MaxMemory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxMemory) GB
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.NumberOfMemorySlots)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfMemorySlots)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.PowerConnector)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PowerConnector)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.HDDInterface)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HDDInterface)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.SSDInterface)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SSDInterface)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.FormFactor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FormFactor)
+        </dd>
+        <dt style="width:200px; margin-right: 20px;">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)$
+        </dd>
+    </dl>
+</div>
+<div style="margin-left:150px">
+    @if (this.User.IsInRole(WebConstants.AdminRole))
+    {
+        <a asp-area="Admin" asp-controller="Motherboards" asp-action="Edit" asp-route-id="@(Model.Id)" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" asp-controller="Motherboards" asp-area="" class="btn btn-default">Back to List</a>
+</div>

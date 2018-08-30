@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.ProcessorViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All processors</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Architecture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Socket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfCores)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Frequency))(GHz)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Cache))(MB)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Power))(W)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.MemoryType)
+            </th>*@
+            <th>
+                @(Html.DisplayNameFor(model => model.MaxMemorySize))(GB)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Price))($)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayForModel()
+    </tbody>
+</table>

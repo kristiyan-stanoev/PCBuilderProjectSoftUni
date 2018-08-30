@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.CaseViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All cases</h2>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormFactor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfVents)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPorts)
+            </th>
+            <th>
+                @(Html.DisplayNameFor(model => model.Weight))(Kg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)$
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+     @Html.DisplayForModel()
+    </tbody>
+</table>

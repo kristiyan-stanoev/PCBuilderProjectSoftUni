@@ -1,0 +1,53 @@
+﻿@model PCBuilder.Common.Models.ViewModels.ProcessorViewModel
+@{
+    ViewData["Title"] = "ProcessorViewModel";
+}
+        <tr>
+            <td>
+                @Html.DisplayFor(model => Model.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Architecture)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Socket)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.NumberOfCores)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Frequency)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Cache)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Power)
+            </td>
+            @*<td>
+                @Html.DisplayFor(model => Model.MemoryType)
+            </td>*@
+            <td>
+                @Html.DisplayFor(model => Model.MaxMemorySize)
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Price)
+            </td>
+            <td>
+                <div style=@(this.User.IsInRole(WebConstants.AdminRole) ? "width:200px;" : "")>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Processors" asp-action="Edit" asp-route-id="@Model.Id" asp-area="Admin" class="btn btn-warning">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Details</a>
+                    @if (this.User.IsInRole(WebConstants.AdminRole))
+                    {
+                        <a asp-controller="Processors" asp-action="Delete" asp-route-id="@Model.Id" asp-area="Admin" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </td>
+        </tr>
+

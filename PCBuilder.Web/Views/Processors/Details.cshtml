@@ -1,0 +1,87 @@
+﻿@model PCBuilder.Common.Models.ViewModels.ProcessorViewModel
+@using PCBuilder.Common
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProcessorViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => Model.Manufacturer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Manufacturer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.ModelName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.ModelName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Architecture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Architecture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Socket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Socket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.NumberOfCores)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.NumberOfCores)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Frequency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Frequency) GHz
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Cache)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Cache) MB
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Power)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Power) W
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => Model.MemoryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.MemoryType)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => Model.MaxMemorySize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.MaxMemorySize) GB
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => Model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Price)$
+        </dd>
+    </dl>
+</div>
+<div style="margin-left:110px">
+    @if (this.User.IsInRole(WebConstants.AdminRole))
+    {
+    <a asp-area="Admin" asp-controller="Processors" asp-action="Edit" asp-route-id ="@(Model.Id)" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" asp-controller="Processors" asp-area="" class="btn btn-default">Back to List</a>
+</div>

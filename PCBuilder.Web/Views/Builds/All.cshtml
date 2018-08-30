@@ -1,0 +1,158 @@
+﻿@model IEnumerable<PCBuilder.Common.Models.ViewModels.PCViewModel>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> userManager
+@inject SignInManager<User> signInManager
+@{
+    ViewData["Title"] = "All";
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @(TempData["Error"])
+    </div>
+}
+
+<h2>All builds</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Build a PC</a>
+</p>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>
+                <span style="margin-left:100px">PC image</span>
+            </th>
+            <th>
+                <span style="margin-left:170px">Details</span>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.CaseUrl" alt="PC image" class="" style="width:250px" />
+                </td>
+                <td>
+                    <dl class="dl-horizontal">
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.Username)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.Username)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.BuildName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.BuildName)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.Case)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.Case)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.Processor)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.Processor)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.GraphicsCard)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.GraphicsCard)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.Motherboard)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.Motherboard)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.Memory)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.Memory)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.NumberOfMemorySticks)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.NumberOfMemorySticks)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.PowerSupply)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.PowerSupply)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.HardDiskDrive)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.HardDiskDrive)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.SolidStateDrive)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.SolidStateDrive)
+                        </dd>
+                        <dt style="width:180px; margin-right: 20px;">
+                            @Html.DisplayNameFor(model => item.TotalPrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => item.TotalPrice)$
+                        </dd>
+                    </dl>
+                </td>
+
+                <td>
+                    <div class="text-center">
+                        @*@if (this.User.IsInRole(WebConstants.AdminRole))
+                            {
+                                <a asp-controller="Cases" asp-action="Edit" asp-route-id="@Model.Id" asp-area="Admin" class="btn btn-warning responsive">Edit</a>
+                            }*@
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        @if(signInManager.IsSignedIn(this.User)){
+                            var userId = userManager.GetUserId(this.User);
+
+                            @if (this.User.Identity.Name != item.Username && !item.UsersRatedIds.Contains(userId))
+                            {
+                                <a asp-action="Rate" asp-route-id="@item.Id" class="btn btn-warning">Rate</a>
+                            }
+                            @if (this.User.Identity.Name == item.Username)
+                            {
+                                <a asp-controller="Builds" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            }
+                        }
+                    </div>
+                    <br />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => item.SystemRating)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.SystemRating) / @Html.DisplayFor(model => item.MaxSystemRating)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => item.UserRating)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.UserRating) / 10
+                            </dd>
+                        </dl>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
